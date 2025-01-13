@@ -36,7 +36,7 @@ def precompute_theta_pos_frequencies(head_dim: int, seq_len: int, device: str = 
     return freqs_complex
 
 
-def apply_rotrary_embeddings(x: torch.Tensor, freqs_complex: torch.Tensor, device = str):
+def apply_rotary_embeddings(x: torch.Tensor, freqs_complex: torch.Tensor, device = str):
     # (B, Seq_len, H, Head_Dim) -> (B, Seq_len, H, Head_Dim / 2, 2)
     x_complex = torch.view_as_complex(x.float().reshape(*x.shape[:-1], -1,2))
     # (Seq_len, Head_Dim/2) -> (1, Seq_len, 1, Head_Dim / 2)
